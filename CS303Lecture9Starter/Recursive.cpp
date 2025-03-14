@@ -101,13 +101,13 @@ int binarySearchWrap(const vector<int>& v1, int target) {
 
 
 //EXAMPLE 5A ANAGRAM
-//PRE:  v1 is a vector that contains integers
+//PRE:  accept the string, size, position, permutation count(i)
 //POST: returns the position of target in the
 //      vector or -1 if it is not in the vector
 
 void Anagram(string original, string text, size_t size, int pos, int& i) {
 
-    //cout << original << " : " << text << " : " << size << " : " << pos << " : " << i << endl;
+    cout << "\t\t" << original << " : " << text << " : " << size << " : " << pos << " : " << i << endl;
     if (size > 2 && pos == 1) //look at a smaller string
         Anagram(text, text, size - 1, 1, i);
 
@@ -130,7 +130,7 @@ void Anagram(string original, string text, size_t size, int pos, int& i) {
 //wrapper function
 void AnagramWrap(string text) { //wrapper function
     int i = 1;
-    cout << "\t" << i << " : " << text << endl; //print the first premutaion 
+    cout << "\t" << i << " : " << text << endl; //print the first permutaion 
     if (text.size() <= 1)
         return;
     Anagram(text, text, text.size(), 1, i);
@@ -138,9 +138,9 @@ void AnagramWrap(string text) { //wrapper function
 
 //EXAMPLE 5B PERMUTATIONS
 // Function to print permutations of the string
-// This function takes two parameters:
+// This function takes the parameters:
 // 1. String
-// 2. Starting index of the string.
+// 2. Starting left & right index of the string.
 
 void permute5B(vector<string>& list, int left, int right) {
     // Base case

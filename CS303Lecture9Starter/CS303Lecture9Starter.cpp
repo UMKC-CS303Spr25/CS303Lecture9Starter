@@ -37,7 +37,7 @@ int main() {
     string text = "cat";
     AnagramWrap(text);
     cout << endl << endl << endl;
-
+    
     //OTHER EXAMPLES
     cout << "\n\nEXAMPLE 5B: PERMUTATIONS 5B\n";
     vector<string> wordList = {"C", "A", "T"};
