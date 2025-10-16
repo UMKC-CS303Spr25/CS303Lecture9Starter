@@ -54,29 +54,26 @@ int fib2Wrap(int n) {
     if (n <= 2)
         return 1;
     return fib2(1, 1, n);
-}
+ }
 
 //EXAMPLE 3 TASK : AVERAGE
 //recursive function
-int rAvg(list<int> myList, list<int>::iterator itr, int total) {
-    //is list at the end?
+int rAvg(list<int>& myList, list<int>::iterator itr, int total) {
+    //base case
 
     //add to total
-
+ 
     //call recursive function incrementing itr
-    return total;
+ 
 }
 
-
-//EXAMPLE 3 TASK :AVERAGE 
-//wrapper function
-int rAvgWrap(const list<int>& myList) {
+int rAvgWrap(list<int>& myList) {
     // check for empty list
-
+    if (myList.empty())
+        return 0;
     //call recursive function
     //send list, iterator to beginning of list, and 0 (total)
-
-    return -1;
+    return rAvg(myList, myList.begin(), 0);
 }
 
 //EXAMPLE 4 TASK:  BINARY SEARCH
@@ -412,23 +409,20 @@ void backTrackingWrap() {
 //Setting 'global value' for fastestTrack
 int minTime = INT_MAX;
 
-// Recursive function to find the fastest route
-void fastestTrack(int grid[ROWSIZE][COLSIZE], bool visited[ROWSIZE], int curr, int count, int currTime) {
-    if (count == ROWSIZE - 1) {  // If all locations visited, return to M
-        currTime += grid[curr][0];  // Add time to return to M
-        minTime = min(minTime, currTime);  // Update minimum time
-        return;
-    }
+//PRE: Accepts the grid, a visited array marking which nodes have been visited, the current position
+//     the current count, and current time
+//POST: Recursive function to find the fastest route from the starting point 
+//      reset minTime to lowest (fastest) route
 
-    for (int next = 1; next < ROWSIZE; next++) {  // Try all possible locations
-        if (!visited[next]) {
-            visited[next] = true;  // Mark as visited
-            fastestTrack(grid, visited, next, count + 1, currTime + grid[curr][next]);
-            visited[next] = false;  // Backtrack
-        }
-    }
+void fastestTrack(int grid[ROWSIZE][COLSIZE], bool visited[ROWSIZE], int curr, int count, int currTime) {
+   //complete this function
+
 }
 
+//PRE: None
+//POST: initialize the grid with differences between nodes
+//      set starting position as visited, all others as false
+//      call recursive function FastestTrack to complete the search for the shortest travel time.
 void fastestTrackWrap() {
     //note: grid is also 5x5
     //set up initial distances from each node to each node in the map
@@ -441,7 +435,8 @@ void fastestTrackWrap() {
     };
 
     bool visited[ROWSIZE];
-    for (int i = 0; i < ROWSIZE; i++) visited[i] = false;
+    for (int i = 0; i < ROWSIZE; i++) 
+        visited[i] = false;
 
     visited[0] = true;  // Start from M
     fastestTrack(grid, visited, 0, 0, 0);

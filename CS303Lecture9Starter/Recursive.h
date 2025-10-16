@@ -28,7 +28,7 @@ int fib2Wrap(int n);
 //PRE: accepts a list that has been initialized  
 //POST: calculates the average recursively for that list
 //     rAvg - recursive 
-int rAvgWrap(const list<int>& myList);
+int rAvgWrap(list<int> &myList);
 
 //EXAMPLE 4 TASK : BINARY SEARCH 
 //PRE:  v1 is a vector that contains integers
