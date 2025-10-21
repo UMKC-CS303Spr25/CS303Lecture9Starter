@@ -60,11 +60,12 @@ int fib2Wrap(int n) {
 //recursive function
 int rAvg(list<int>& myList, list<int>::iterator itr, int total) {
     //base case
-
+    if (itr == myList.end())
+        return total / myList.size();
     //add to total
- 
+    total = total + *itr;
     //call recursive function incrementing itr
- 
+    return rAvg(myList, ++itr, total);
 }
 
 int rAvgWrap(list<int>& myList) {
@@ -79,10 +80,16 @@ int rAvgWrap(list<int>& myList) {
 //EXAMPLE 4 TASK:  BINARY SEARCH
 //recursive function
 //correct function header to include all values needed to narrow search
-int binarySearch(const vector<int>& v1) {
-
-
-
+int binarySearch(const vector<int>& v1, int start, int end, int target) {
+    if (start > end)
+        return -1;
+    int middle = (start + end) / 2;
+    if (target < v1.at(middle))
+        return binarySearch(v1, start, middle - 1, target);
+    else if (target > v1.at(middle))
+        return binarySearch(v1, middle + 1, end, target);
+    else
+        return middle;
     return -1;
 }
 //TASK 4 BINARY SEARCH
@@ -93,7 +100,7 @@ int binarySearch(const vector<int>& v1) {
 //wrapper function
 int binarySearchWrap(const vector<int>& v1, int target) {
     //correct call to include all values needed to narrow search
-    return binarySearch(v1);
+    return binarySearch(v1, 0, v1.size() - 1, target );
 }
 
 
@@ -414,8 +421,23 @@ int minTime = INT_MAX;
 //POST: Recursive function to find the fastest route from the starting point 
 //      reset minTime to lowest (fastest) route
 
-void fastestTrack(int grid[ROWSIZE][COLSIZE], bool visited[ROWSIZE], int curr, int count, int currTime) {
+void fastestTrack(int grid[ROWSIZE][COLSIZE], bool visited[ROWSIZE], 
+                  int curr, int count, int currTime) {
    //complete this function
+    if (count == ROWSIZE - 1) {
+        currTime += grid[curr][0]; //add time to return to M
+        minTime = min(minTime, currTime); //update minTime
+        return;
+    }
+    for (int next = 1; next < ROWSIZE; next++) {
+        if (!visited[next]) {
+            visited[next] = true;
+            fastestTrack(grid, visited, next, count + 1, currTime + grid[curr][next]);
+            visited[next] = false;
+                
+        }
+    
+    }
 
 }
 
